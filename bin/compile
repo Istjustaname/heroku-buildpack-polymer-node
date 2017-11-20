@@ -42,6 +42,7 @@ cp index.php build/es6-unbundled/index.php
 mv build/es6-bundled/ tmp/
 shopt -s extglob
 rm -rf !(tmp)
-mv tmp .
-
+rm -f .*
+mv tmp/* ./
+rmdir tmp
 speak "Finished!"
