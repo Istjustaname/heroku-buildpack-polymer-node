@@ -39,10 +39,7 @@ speak "Installing package dependencies..."
 bower install
 polymer build
 cp index.php build/es6-unbundled/index.php
-mv build/es6-bundled/ tmp/
-shopt -s extglob
-rm -rf !(tmp)
-rm -f .*
-mv tmp/* ./
-rmdir tmp
+rm -rf bower_components
+mv -f build/es6-bundled/* .
+rmdir build
 speak "Finished!"
