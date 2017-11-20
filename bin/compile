@@ -38,15 +38,10 @@ npm install babel-core rollup-plugin-babel rollup-plugin-commonjs
 speak "Installing package dependencies..."
 bower install
 polymer build
-speak "Copying missing bower components..."
-cp -rn bower_components build/unbundled/
-cp -rn bower_components build/bundled/
-
-mkdir -p $BUILD_DIR/vendor/bin
-mv $BUILD_DIR/$NODE_DIR $BUILD_DIR/vendor/bin/
-mkdir -p $BUILD_DIR/.profile.d
-cat<<EOF > $BUILD_DIR/.profile.d/init.sh
-PATH="\$PATH:\$HOME/vendor/bin/$NODE_DIR/bin"
-EOF
+cp index.php build/es6-unbundled/index.php
+mv build/es6-bundled/ tmp/
+shopt -s extglob
+rm -rf !(tmp)
+mv tmp .
 
 speak "Finished!"
