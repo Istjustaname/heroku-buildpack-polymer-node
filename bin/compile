@@ -47,4 +47,5 @@ mv -f tmp/* .
 rmdir tmp
 ls
 speak ls
+echo ls
 speak "Finished!"
