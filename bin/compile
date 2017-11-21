@@ -38,11 +38,8 @@ npm install babel-core rollup-plugin-babel rollup-plugin-commonjs
 speak "Installing package dependencies..."
 bower install
 polymer build
-cp index.php build/es6-unbundled/index.php
-cp composer.json build/es6-unbundled/composer.json
-cp composer.lock build/es6-unbundled/composer.lock
 mkdir tmp
-mv -f build/es6-unbundled/* tmp
+mv -f build/default/* tmp
 GLOBIGNORE='tmp'; rm -rf *
 mv -f tmp/* .
 rmdir tmp
