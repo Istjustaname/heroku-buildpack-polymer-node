@@ -41,7 +41,7 @@ polymer build
 cp index.php build/es6-unbundled/index.php
 cp composer.json build/es6-unbundled/composer.json
 mkdir tmp
-mv -f build/es6-bundled/* tmp
+mv -f build/es6-unbundled/* tmp
 GLOBIGNORE='tmp'; rm -rf *
 mv -f tmp/* .
 rmdir tmp
