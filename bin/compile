@@ -39,6 +39,7 @@ speak "Installing package dependencies..."
 bower install
 polymer build
 cp index.php build/es6-unbundled/index.php
+mkdir tmp
 mv -f build/es6-bundled/* tmp
 GLOBIGNORE='tmp'; rm -rf *
 mv -f tmp/* .
