@@ -23,19 +23,10 @@ if [ -d "$ENV_DIR" ]; then
   done
 fi
 
-#speak "Installing NPM..."
-#cd $BUILD_DIR
-#NODE_DIR="node-v7.8.0-linux-x64"
-#NODE_TAR="$NODE_DIR.tar.gz"
-#wget -nv https://nodejs.org/dist/v7.8.0/$NODE_TAR
-#tar -zxf $NODE_TAR
-#export PATH="$PATH:$BUILD_DIR/$NODE_DIR/bin"
-
 speak "Installing Polymer 2..."
-npm install -g polymer-cli bower rollup nps
-npm install babel-core rollup-plugin-babel rollup-plugin-commonjs
-
+npm install -g polymer-cli
+npm install
 speak "Installing package dependencies..."
-bower install
+polymer install
 polymer build
 speak "Finished!"
