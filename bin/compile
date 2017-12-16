@@ -1,17 +1,14 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
-set -e
-set -o pipefail
+set -o errexit    # always exit on error
+set -o pipefail   # don't ignore exit codes when piping output
+unset GIT_DIR     # Avoid GIT_DIR leak from previous build steps
 
 # Heroku-provided params
-BUILD_DIR="$1"
-CACHE_DIR="$2"
-ENV_DIR="$3"
-
-function speak () {
-  echo "-----> $(date -u '+%Y-%m-%d_%H:%M:%S') $1"
-}
+BUILD_DIR=${1:-}
+CACHE_DIR=${2:-}
+ENV_DIR=${3:-}
 
 BLACKLIST_REGEX="^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH)$"
 if [ -d "$ENV_DIR" ]; then
@@ -23,11 +20,12 @@ if [ -d "$ENV_DIR" ]; then
   done
 fi
 
-speak "Installing Polymer 2..."
+cd $BUILD_DIR
+echo "Installing Polymer 2..."
 npm install -g polymer-cli
-cd $ENV_DIR
 npm install
-speak "Installing package dependencies..."
+echo "Installing package dependencies..."
 polymer install
+echo "Building Polymer app..."
 polymer build
-speak "Finished!"
+echo "Finished!"
