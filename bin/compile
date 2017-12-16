@@ -12,7 +12,7 @@ ENV_DIR=${3:-}
 
 BLACKLIST_REGEX="^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH)$"
 if [ -d "$ENV_DIR" ]; then
-  speak "Exporting config vars"
+  echo "Exporting config vars"
   for e in $(ls "$ENV_DIR"); do
     echo "$e" | grep -qvE "$BLACKLIST_REGEX" &&
     export "$e=$(cat $ENV_DIR/$e)"
