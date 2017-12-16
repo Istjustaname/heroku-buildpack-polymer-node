@@ -25,6 +25,7 @@ fi
 
 speak "Installing Polymer 2..."
 npm install -g polymer-cli
+cd $ENV_DIR
 npm install
 speak "Installing package dependencies..."
 polymer install
