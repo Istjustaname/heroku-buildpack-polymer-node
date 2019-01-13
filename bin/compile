@@ -23,16 +23,6 @@ fi
 cd $BUILD_DIR
 echo "Installing Polymer 3..."
 npm install -g polymer-cli
-npm install
-echo "Installing package dependencies..."
-polymer install
-echo "Building Polymer app..."
-polymer build
-echo "Finished!"
-
-
-cd $(dirname "${0}")
-cd ..
 
 echo "========================================================================="
 echo "Building Frontend"
