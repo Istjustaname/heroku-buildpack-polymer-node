@@ -45,5 +45,6 @@ cp index.js build/
 cp package.json build/
 cp -R config build/
 cp -R certs build/
+rm -r node_modules/* 
 cd build
 npm install --production --unsafe-perm || exit 1
