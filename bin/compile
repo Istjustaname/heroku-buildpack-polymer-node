@@ -38,8 +38,6 @@ echo "Building Server"
 echo "========================================================================="
 
 export NODE_ENV="production"
-export FRONTEND_BUNDLE="es6-unbundled"
-export DEBUG="chaturbate:"
 
 mkdir -p certs config
 cp package-lock.json build/
