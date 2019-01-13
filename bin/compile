@@ -21,7 +21,7 @@ if [ -d "$ENV_DIR" ]; then
 fi
 
 cd $BUILD_DIR
-echo "Installing Polymer 2..."
+echo "Installing Polymer 3..."
 npm install -g polymer-cli
 npm install
 echo "Installing package dependencies..."
@@ -29,3 +29,33 @@ polymer install
 echo "Building Polymer app..."
 polymer build
 echo "Finished!"
+
+
+cd $(dirname "${0}")
+cd ..
+
+echo "========================================================================="
+echo "Building Frontend"
+echo "========================================================================="
+
+npm install --production=false || exit 1
+echo "Npm install --procution DONE"
+polymer build --env=production --verbose || exit 1
+echo "polymer build DONE"
+
+echo "========================================================================="
+echo "Building Server"
+echo "========================================================================="
+
+export NODE_ENV="production"
+export FRONTEND_BUNDLE="es6-unbundled"
+export DEBUG="chaturbate:"
+
+mkdir -p certs config
+cp package-lock.json build/
+cp index.js build/
+cp package.json build/
+cp -R config build/
+cp -R certs build/
+cd build
+npm install --production --unsafe-perm || exit 1
